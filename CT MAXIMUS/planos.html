@@ -1,22 +1,18 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossos Planos - Maximus CT</title>
-    
-    
+
     <link rel="stylesheet" href="css/style.css">
-    
-   
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    
+
     <style>
+       
         .page-title {
             text-align: center;
             font-size: 3.5rem;
@@ -51,147 +47,252 @@
             flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .plan-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 25px rgba(217, 165, 19, 0.1);
         }
 
-        .plan-card .plan-name {
+        .plan-name {
             font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--cor-texto-secundario);
             margin-bottom: 15px;
         }
-        
-        .plan-card .plan-price {
+
+        .plan-price {
             font-size: 3.5rem;
             font-weight: 900;
             margin: 20px 0;
             color: var(--cor-principal);
         }
-        
-        .plan-card .plan-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--cor-texto-secundario);
-        }
 
-        .plan-card .plan-features {
+        .plan-features {
             list-style: none;
             margin: 20px 0;
             color: var(--cor-texto-secundario);
             text-align: left;
-            flex-grow: 1; 
+            flex-grow: 1;
         }
-        
-        .plan-card .plan-features li {
+
+        .plan-features li {
             margin-bottom: 10px;
             padding-left: 25px;
             position: relative;
         }
-        
-        
-        .plan-card .plan-features li::before {
+
+        .plan-features li::before {
             content: '✓';
             color: var(--cor-principal);
             position: absolute;
             left: 0;
             font-weight: bold;
         }
-        
-        .plan-card .cta-button {
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #111;
+            padding: 30px;
+            width: 90%;
+            max-width: 420px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content input,
+        .modal-content select,
+        .modal-content button {
             width: 100%;
-            margin-top: auto;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        #msgResposta {
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <a href="index.html" class="logo">MAXIMUS CT</a>
-        <nav>
-            <ul>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="planos.html">Planos</a></li>
-                <li><a href="unidades.html">Unidades</a></li>
-                <li><a href="vantagens.html">Vantagens</a></li>
+<header>
+    <a href="index.html" class="logo">MAXIMUS CT</a>
+    <nav>
+        <ul>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="planos.html">Planos</a></li>
+            <li><a href="unidades.html">Unidades</a></li>
+            <li><a href="vantagens.html">Vantagens</a></li>
+        </ul>
+    </nav>
+    <button class="cta-button" onclick="abrirModal()">Matricule-se</button>
+</header>
+
+<main>
+<section class="plans-section">
+    <h1 class="page-title">Nossos <span class="highlight">Planos</span></h1>
+    <p class="page-subtitle">
+        Escolha o plano que melhor se adapta à sua jornada.
+    </p>
+
+    <div class="plans-grid">
+
+        <article class="plan-card">
+            <h3 class="plan-name">Plano Gladius</h3>
+            <p class="plan-price">R$249<span>/Mês</span></p>
+            <ul class="plan-features">
+                <li>Acesso ilimitado</li>
+                <li>Acompanhamento</li>
+                <li>Armário rotativo</li>
+                <li>Todas as unidades</li>
             </ul>
-        </nav>
-        <a href="planos.html" class="cta-button">Matricule-se</a>
-    </header>
+            <button class="cta-button" onclick="abrirModal('Gladius')">
+                Assine Agora
+            </button>
+        </article>
 
-    <main>
-        <section class="plans-section">
-            <h1 class="page-title">Nossos <span class="highlight">Planos</span></h1>
-            <p class="page-subtitle">Escolha o plano que melhor se adapta à sua jornada. Todos incluem acesso ilimitado e acompanhamento de elite.</p>
-            
-            <div class="plans-grid">
-               
-                <article class="plan-card">
-                    <h3 class="plan-name">Plano Gladius</h3>
-                    <p class="plan-price">R$249<span>/Mês</span></p>
-                    <ul class="plan-features">
-                        <li>Acesso ilimitado a musculação</li>
-                        <li>Acompanhamento com instrutor</li>
-                        <li>Armário rotativo</li>
-                        <li>Acesso a todas as unidades</li>
-                    </ul>
-                    <a href="#" class="cta-button">Assine Agora</a>
-                </article>
+        <article class="plan-card">
+            <h3 class="plan-name">Plano Maximus</h3>
+            <p class="plan-price">R$349<span>/Mês</span></p>
+            <ul class="plan-features">
+                <li>Todos os benefícios</li>
+                <li>Aulas coletivas</li>
+                <li>Avaliação física</li>
+                <li>Convidado 2x/mês</li>
+            </ul>
+            <button class="cta-button" onclick="abrirModal('Maximus')">
+                Seja Maximus
+            </button>
+        </article>
 
-             
-                <article class="plan-card">
-                    <h3 class="plan-name">Plano Maximus</h3>
-                    <p class="plan-price">R$349<span>/Mês</span></p>
-                    <ul class="plan-features">
-                        <li>Todos os benefícios do Plano Gladius</li>
-                        <li>Acesso a aulas coletivas</li>
-                        <li>Avaliação física semestral</li>
-                        <li>Convidado 2x por mês</li>
-                    </ul>
-                    <a href="#" class="cta-button">Seja Maximus</a>
-                </article>
-            </div>
-        </section>
-    </main>
+    </div>
+</section>
+</main>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-logo">
-                <a href="index.html" class="logo">MAXIMUS CT</a>
-            </div>
-            <nav>
-                <h4>Navegação</h4>
-                <ul>
-                    <li><a href="sobre.html">Sobre</a></li>
-                    <li><a href="planos.html">Planos</a></li>
-                    <li><a href="unidades.html">Unidades</a></li>
-                    <li><a href="vantagens.html">Vantagens</a></li>
-                </ul>
-            </nav>
-            <nav>
-                <h4>Suporte</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Termos de Uso</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                </ul>
-            </nav>
-            <div>
-                <h4>Siga-nos</h4>
-                <div class="footer-socials">
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Youtube">YT</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>© 2025 Maximus CT. Todos os direitos reservados.</p>
-            <p>MAXIMUS CT ACADEMIA LTDA - CNPJ 00.000.000/0001-00</p>
-        </div>
-    </footer>
+<div id="modalMatricula" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <h2>Matrícula</h2>
+
+        <form id="formMatricula">
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="telefone" placeholder="Telefone">
+
+            <select name="plano" id="planoSelect">
+                <option value="Gladius">Plano Gladius</option>
+                <option value="Maximus">Plano Maximus</option>
+            </select>
+
+            <button type="submit">Confirmar Matrícula</button>
+            <p id="msgResposta"></p>
+        </form>
+    </div>
+</div>
+<div id="modalSucesso" class="modal">
+    <div class="modal-content" style="text-align: center;">
+        <h2 style="color: var(--cor-principal);">Matrícula Realizada!</h2>
+        <p style="margin-bottom: 20px; color: #fff;">
+            Bem-vindo ao time Maximus CT.<br>
+            Entraremos em contato em breve.
+        </p>
+        <button class="cta-button" onclick="fecharModalSucesso()">Entendido</button>
+    </div>
+</div>
+
+<footer>
+    <p style="text-align:center">© 2025 Maximus CT</p>
+</footer>
+
+<script>
+
+    const modal = document.getElementById('modalMatricula')
+    const modalSucesso = document.getElementById('modalSucesso') // Novo Modal
+    const form = document.getElementById('formMatricula')
+    const msg = document.getElementById('msgResposta')
+    const planoSelect = document.getElementById('planoSelect')
+
+    
+    function abrirModal(plano) {
+        if (plano) planoSelect.value = plano
+        modal.style.display = 'flex'
+    }
+
+    function fecharModal() {
+        modal.style.display = 'none'
+        msg.textContent = ''
+    }
+
+    
+    function fecharModalSucesso() {
+        modalSucesso.style.display = 'none'
+    }
+
+    
+    window.onclick = (e) => {
+        if (e.target === modal) fecharModal()
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const dados = {
+            nome: form.nome.value,
+            email: form.email.value,
+            telefone: form.telefone.value,
+            plano: form.plano.value
+        }
+
+        try {
+            const res = await fetch('http://localhost:3000/matricula', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            })
+
+            const json = await res.json()
+
+            if (json.sucesso) {
+              
+                form.reset()
+                
+                fecharModal()
+                
+                modalSucesso.style.display = 'flex'
+            } else {
+                msg.textContent = 'Erro ao matricular: ' + (json.mensagem || 'Tente novamente.')
+            }
+        } catch (error) {
+            console.error(error)
+            msg.textContent = 'Erro de conexão com o servidor'
+        }
+    })
+
+</script>
 
 </body>
 </html>
